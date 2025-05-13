@@ -2,11 +2,29 @@
 
 This is the backend service for the Maxx Mai Card recommendation system. It provides APIs for Gmail authentication, e-statement fetching, and credit card recommendations.
 
-## Setup
+## Features
 
-1. Create a `.env` file based on `.env.example` and fill in the required values:
+- **Gmail OAuth Integration**: Secure authentication with Gmail
+- **E-statement Analysis**: Extract spending data from Gmail e-statements
+- **Credit Card Recommendation Engine**: Algorithm to match spending patterns with optimal credit cards
+- **RESTful API**: Well-documented endpoints for frontend integration
+- **MongoDB Integration**: Efficient data storage and retrieval
+- **HTTPS Support**: Secure communication with SSL/TLS
+- **Docker Support**: Easy deployment with containerization
 
-\`\`\`
+## Setup Options
+
+### Prerequisites
+
+- Python 3.9+
+- MongoDB (running locally or accessible)
+- Google API credentials (see main README for setup instructions)
+
+### Environment Configuration
+
+Create a `.env` file based on `.env.example` and fill in the required values:
+
+```
 # MongoDB
 MONGO_URI=mongodb://localhost:27017/
 
@@ -17,45 +35,83 @@ JWT_SECRET=your-secret-key-here
 GOOGLE_CLIENT_ID=your-google-client-id
 GOOGLE_CLIENT_SECRET=your-google-client-secret
 OAUTH_REDIRECT_URI=https://localhost:3000/auth/callback
-\`\`\`
+```
+
+### Manual Setup
+
+1. Create and activate a virtual environment:
+
+```bash
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+```
 
 2. Install dependencies:
 
-\`\`\`bash
+```bash
 pip install -r requirements.txt
-\`\`\`
+```
 
-3. Generate self-signed certificates for HTTPS:
+3. Generate self-signed certificates for HTTPS (if not already done at the project root):
 
-\`\`\`bash
+```bash
 mkdir -p ../certs
 openssl req -x509 -newkey rsa:4096 -keyout ../certs/server.key -out ../certs/server.crt -days 365 -nodes -subj "/CN=localhost"
-\`\`\`
+```
 
 4. Run the application:
 
-\`\`\`bash
+```bash
 python -m app.main
-\`\`\`
+```
+
+The backend will be available at [https://localhost:8000](https://localhost:8000).
+
+### Docker Setup
+
+You can run the backend using Docker:
+
+```bash
+# Build the image
+docker build -t maxx-mai-card-backend .
+
+# Run the container
+docker run -p 8000:8000 -v $(pwd)/../certs:/app/certs --env-file .env maxx-mai-card-backend
+```
+
+Alternatively, use Docker Compose from the project root (recommended):
+
+```bash
+cd ..
+docker-compose up -d
+```
 
 ## API Endpoints
 
+### Authentication
+
 - `GET /auth/url` - Get Gmail OAuth URL
 - `GET /auth/callback` - Process OAuth callback
+
+### E-statements
+
 - `GET /statements/fetch` - Fetch latest e-statement from Gmail
+
+### Recommendations
+
 - `POST /recommend` - Get card recommendation based on spending patterns
 
 ## Example API Calls
 
 ### Get OAuth URL
 
-\`\`\`bash
+```bash
 curl -k https://localhost:8000/auth/url
-\`\`\`
+```
 
 ### Get Card Recommendation
 
-\`\`\`bash
+```bash
 curl -k -X POST https://localhost:8000/recommend \
   -H "Content-Type: application/json" \
   -d '{
@@ -70,12 +126,17 @@ curl -k -X POST https://localhost:8000/recommend \
       "other": 100
     }
   }'
-\`\`\`
+```
 
-## Docker
+## Troubleshooting
 
-You can also run the application using Docker:
+- **MongoDB Connection Issues**: Ensure MongoDB is running and accessible at the URI specified in your `.env` file
+- **SSL Certificate Errors**: Verify that the certificates are correctly generated and accessible
+- **Google API Errors**: Check your Google API credentials and ensure the correct redirect URIs are configured
 
-\`\`\`bash
-docker build -t maxx-mai-card-backend .
-docker run -p 8000:8000 -v $(pwd)/../certs:/app/certs --env-file .env maxx-mai-card-backend
+## Development
+
+The backend is built with FastAPI, which provides automatic API documentation. You can access the interactive API docs at:
+
+- Swagger UI: [https://localhost:8000/docs](https://localhost:8000/docs)
+- ReDoc: [https://localhost:8000/redoc](https://localhost:8000/redoc)
