@@ -1,0 +1,44 @@
+cards:
+  - name: "Cash Rewards Card"
+    description: "Earn cash back on every purchase"
+    annual_fee: 0
+    signup_bonus: 200
+    rewards:
+      dining: 3
+      groceries: 2
+      gas: 3
+      other: 1
+      general: 1
+    features:
+      - "No annual fee"
+      - "0% intro APR for 15 months"
+      - "No foreign transaction fees"
+
+  - name: "Travel Elite Card"
+    description: "Premium travel rewards and benefits"
+    annual_fee: 95
+    signup_bonus: 500
+    rewards:
+      travel: 5
+      dining: 3
+      groceries: 1
+      other: 1
+    features:
+      - "Airport lounge access"
+      - "Global Entry/TSA PreCheck credit"
+      - "No foreign transaction fees"
+      - "Trip cancellation insurance"
+
+  - name: "Everyday Points Card"
+    description: "Earn points on everyday spending"
+    annual_fee: 0
+    signup_bonus: 150
+    rewards:
+      groceries: 3
+      gas: 3
+      utilities: 2
+      other: 1
+    features:
+      - "No annual fee"
+      - "0% intro APR for 12 months"
+      - "Cell phone protection"

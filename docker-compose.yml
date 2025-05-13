@@ -1,0 +1,86 @@
+version: '3.8'
+
+services:
+  mongo:
+    image: mongo:6
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+
+  backend:
+    build: ./backend
+    command: >
+      uvicorn app.main:app
+      --reload --host 0.0.0.0 --port 8000
+      --ssl-keyfile=certs/server.key
+      --ssl-certfile=certs/server.crt
+    ports:
+      - "8000:8000"
+    volumes:
+version: '3.8'
+
+services:
+  mongo:
+    image: mongo:6
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    restart: always
+
+  backend:
+    build: ./backend
+    command: >
+      uvicorn app.main:app
+      --reload --host 0.0.0.0 --port 8000
+      --ssl-keyfile=certs/server.key
+      --ssl-certfile=certs/server.crt
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app
+      - ./certs:/app/certs
+    env_file:
+      - ./backend/.env
+    depends_on:
+      - mongo
+    restart: always
+
+  frontend:
+    build: ./frontend
+    command: npm run dev
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app
+      - ./certs:/certs
+    env_file:
+      - ./frontend/.env.local
+    depends_on:
+      - backend
+    restart: always
+
+volumes:
+  mongodb_data:      - ./backend:/app
+      - ./certs:/app/certs
+    env_file:
+      - ./backend/.env
+    depends_on:
+      - mongo
+
+  frontend:
+    build: ./frontend
+    command: npm run dev
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app
+      - ./certs:/certs
+    env_file:
+      - ./frontend/.env.local
+    depends_on:
+      - backend
+
+volumes:
+  mongodb_data:
