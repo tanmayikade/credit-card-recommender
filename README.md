@@ -199,4 +199,4 @@ To enable Gmail OAuth and e-statement fetching, you need to set up Google API cr
 
 ## License
 
-[MIT](LICENSE)
+[Apache 2.0](LICENSE.md) 
