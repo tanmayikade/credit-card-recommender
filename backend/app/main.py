@@ -1,6 +1,7 @@
 from fastapi import FastAPI, Depends, HTTPException, status
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
+from fastapi.responses import RedirectResponse
 import uvicorn
 import ssl
 from pydantic import BaseModel
@@ -19,7 +20,10 @@ app = FastAPI(title="Maxx Mai Card API")
 # CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://localhost:3000"],
+    allow_origins=[
+        "http://localhost:3000",
+        "https://localhost:3000"
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -60,7 +64,9 @@ async def auth_callback(code: str):
     
     # Create JWT token
     access_token = create_access_token(data={"sub": user_data["email"]})
-    return {"access_token": access_token, "token_type": "bearer"}
+    # Redirect to frontend with token
+    redirect_url = f"http://localhost:3000/callback?token={access_token}"
+    return RedirectResponse(url=redirect_url)
 
 # Statement routes
 @app.get("/statements/fetch", response_model=Statement)

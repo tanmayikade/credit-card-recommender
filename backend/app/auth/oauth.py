@@ -7,11 +7,12 @@ from datetime import datetime, timedelta
 # OAuth configuration
 CLIENT_ID = os.getenv("GOOGLE_CLIENT_ID")
 CLIENT_SECRET = os.getenv("GOOGLE_CLIENT_SECRET")
-REDIRECT_URI = os.getenv("OAUTH_REDIRECT_URI", "https://localhost:3000/auth/callback")
+REDIRECT_URI = os.getenv("OAUTH_REDIRECT_URI", "https://localhost:8000/auth/callback")
 SCOPES = [
     "https://www.googleapis.com/auth/gmail.readonly",
     "https://www.googleapis.com/auth/userinfo.email",
-    "https://www.googleapis.com/auth/userinfo.profile"
+    "https://www.googleapis.com/auth/userinfo.profile",
+    "openid"
 ]
 
 def get_authorization_url():
@@ -53,9 +54,14 @@ async def process_oauth_callback(code: str):
         scopes=SCOPES
     )
     flow.redirect_uri = REDIRECT_URI
-    
-    # Exchange authorization code for tokens
-    flow.fetch_token(code=code)
+
+    try:
+        # Exchange authorization code for tokens
+        flow.fetch_token(code=code)
+    except Exception as e:
+        print("OAuth fetch_token error:", e)
+        raise
+
     credentials = flow.credentials
     
     # Get user info
@@ -69,7 +75,7 @@ async def process_oauth_callback(code: str):
         "picture": user_info.get("picture", ""),
         "access_token": credentials.token,
         "refresh_token": credentials.refresh_token,
-        "token_expiry": (datetime.utcnow() + timedelta(seconds=credentials.expiry)).isoformat(),
+        "token_expiry": credentials.expiry.isoformat(),
     }
     
     return user_data

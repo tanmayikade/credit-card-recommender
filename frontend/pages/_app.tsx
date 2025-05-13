@@ -1,26 +1,22 @@
-"use client"
-
 import "../styles/globals.css"
 import type { AppProps } from "next/app"
-import { useEffect, useState } from "react"
 import Layout from "../components/Layout"
-import { useRouter } from "next/router"
-import { getCookie } from "../lib/auth"
+import { Toaster } from "react-hot-toast"
+import Head from "next/head"
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const [isAuthenticated, setIsAuthenticated] = useState(false)
-  const router = useRouter()
-
-  useEffect(() => {
-    // Check if user is authenticated
-    const token = getCookie("auth_token")
-    setIsAuthenticated(!!token)
-  }, [router.pathname])
-
   return (
-    <Layout isAuthenticated={isAuthenticated}>
-      <Component {...pageProps} isAuthenticated={isAuthenticated} />
-    </Layout>
+    <>
+      <Head>
+        <title>Maxx Mai Card - Find Your Perfect Card</title>
+        <meta name="description" content="Find the best credit card for your spending habits" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <Layout>
+        <Component {...pageProps} />
+        <Toaster position="top-right" />
+      </Layout>
+    </>
   )
 }
 
