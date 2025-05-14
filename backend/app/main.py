@@ -70,7 +70,7 @@ async def auth_callback(code: str):
     # Create JWT token
     access_token = create_access_token(data={"sub": user_data["email"]})
     # Redirect to frontend with token
-    redirect_url = f"http://localhost:3000/callback?token={access_token}"
+    redirect_url = f"https://v0-maxx-maik.vercel.app/callback?token={access_token}"
     return RedirectResponse(url=redirect_url)
 
 # Statement routes
