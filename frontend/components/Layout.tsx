@@ -97,6 +97,11 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
           <p className="text-center text-sm text-gray-500 dark:text-gray-400">
             &copy; {new Date().getFullYear()} Maxx Mai Card. All rights reserved.
           </p>
+          <div className="mt-2 flex justify-center gap-4 text-sm">
+            <a href="/privacy-policy" className="text-primary-600 hover:underline">Privacy Policy</a>
+            <span>|</span>
+            <a href="/terms" className="text-primary-600 hover:underline">Terms of Service</a>
+          </div>
         </div>
       </footer>
     </div>
