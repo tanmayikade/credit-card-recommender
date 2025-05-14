@@ -1,3 +1,5 @@
+import os
+from dotenv import load_dotenv
 from fastapi import FastAPI, Depends, HTTPException, status
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
@@ -15,15 +17,18 @@ from app.services.gmail import fetch_latest_statement
 from app.services.recommendation import recommend_card
 from app.utils.db import get_database
 
+load_dotenv()
+
+def get_cors_origins():
+    origins = os.getenv("CORS_ALLOW_ORIGINS", "")
+    return [o.strip() for o in origins.split(",") if o.strip()]
+
 app = FastAPI(title="Maxx Mai Card API")
 
 # CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:3000",
-        "https://localhost:3000"
-    ],
+    allow_origins=get_cors_origins(),
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -106,15 +111,11 @@ async def get_recommendation(
     recommendation = recommend_card(request.spends)
     return recommendation
 
+# No SSL context for production; Render and most hosts handle HTTPS termination.
 if __name__ == "__main__":
-    # SSL context for HTTPS
-    ssl_context = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
-    ssl_context.load_cert_chain("../certs/server.crt", keyfile="../certs/server.key")
-    
     uvicorn.run(
-        "app.main:app", 
-        host="0.0.0.0", 
-        port=8000, 
+        "app.main:app",
+        host="0.0.0.0",
+        port=8000,
         reload=True,
-        ssl=ssl_context
     )
