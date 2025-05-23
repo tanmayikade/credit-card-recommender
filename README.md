@@ -1,10 +1,13 @@
-# Maxx Mai Card
+# CardGenius
 
-A credit card recommendation system that analyzes your spending patterns and recommends the best credit card for you based on your spending habits.
+Credit Card Recommendation System
+
+Deployed here: [CardGenius Vercel App](https://v0-maxx-maik.vercel.app/)
+- Note: Backend spins down with inactivity, which can delay requests by 50 seconds or more
 
 ## Project Overview
 
-Maxx Mai Card is a full-stack application that helps users find the best credit card for their spending patterns. The system can analyze Gmail e-statements or accept manual spending input to provide personalized credit card recommendations.
+CardGenius is a full-stack application that helps users find the best credit card for their spending patterns. The system can analyze Gmail e-statements or accept manual spending input to provide personalized credit card recommendations.
 
 ## Project Structure
 

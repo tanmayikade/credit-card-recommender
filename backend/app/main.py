@@ -23,7 +23,7 @@ def get_cors_origins():
     origins = os.getenv("CORS_ALLOW_ORIGINS", "")
     return [o.strip() for o in origins.split(",") if o.strip()]
 
-app = FastAPI(title="Maxx Mai Card API")
+app = FastAPI(title="CardGenius API")
 
 # CORS middleware
 app.add_middleware(

@@ -1,6 +1,6 @@
-# Maxx Mai Card - Backend
+# CardGenius - Backend
 
-This is the backend service for the Maxx Mai Card recommendation system. It provides APIs for Gmail authentication, e-statement fetching, and credit card recommendations.
+This is the backend service for the CardGenius recommendation system. It provides APIs for Gmail authentication, e-statement fetching, and credit card recommendations.
 
 ## Features
 
@@ -73,10 +73,10 @@ You can run the backend using Docker:
 
 ```bash
 # Build the image
-docker build -t maxx-mai-card-backend .
+docker build -t cardgenius-backend .
 
 # Run the container
-docker run -p 8000:8000 -v $(pwd)/../certs:/app/certs --env-file .env maxx-mai-card-backend
+docker run -p 8000:8000 -v $(pwd)/../certs:/app/certs --env-file .env cardgenius-backend
 ```
 
 Alternatively, use Docker Compose from the project root (recommended):

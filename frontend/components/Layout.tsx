@@ -51,7 +51,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
           <div className="flex justify-between h-16 items-center">
             <div className="flex-shrink-0 flex items-center">
               <Link href="/" className="text-primary-600 dark:text-primary-400 font-bold text-xl transition-colors duration-300">
-                Maxx Mai Card
+                CardGenius
               </Link>
             </div>
             <nav className="flex space-x-8 items-center">
@@ -95,7 +95,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       <footer className="bg-white dark:bg-gray-950 border-t border-gray-200 dark:border-gray-800 py-6 transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <p className="text-center text-sm text-gray-500 dark:text-gray-400">
-            &copy; {new Date().getFullYear()} Maxx Mai Card. All rights reserved.
+            &copy; {new Date().getFullYear()} CardGenius. All rights reserved.
           </p>
           <div className="mt-2 flex justify-center gap-4 text-sm">
             <a href="/privacy-policy" className="text-primary-600 hover:underline">Privacy Policy</a>

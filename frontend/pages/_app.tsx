@@ -8,8 +8,9 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
-        <title>Maxx Mai Card - Find Your Perfect Card</title>
+        <title>CardGenius - Find Your Perfect Card</title>
         <meta name="description" content="Find the best credit card for your spending habits" />
+        <meta name="google-site-verification" content="PXjrXBoV2W3fDJzl_QUsOKMeMhS6XwqoMUz8ZuAXPdk" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout>

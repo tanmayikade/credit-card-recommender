@@ -1,6 +1,6 @@
-# Maxx Mai Card - Frontend
+# CardGenius - Frontend
 
-This is the frontend application for the Maxx Mai Card recommendation system. It provides a user interface for Gmail authentication, spending input, and credit card recommendations.
+This is the frontend application for the CardGenius recommendation system. It provides a user interface for Gmail authentication, spending input, and credit card recommendations.
 
 ## Features
 

@@ -4,7 +4,7 @@ export default function PrivacyPolicy() {
   return (
     <>
       <Head>
-        <title>Privacy Policy | Maxx Mai Card</title>
+        <title>Privacy Policy | CardGenius</title>
       </Head>
       <div className="max-w-3xl mx-auto px-4 py-12">
         <h1 className="text-3xl font-bold mb-6">Privacy Policy</h1>
@@ -12,7 +12,7 @@ export default function PrivacyPolicy() {
           <strong>Effective Date:</strong> {new Date().getFullYear()}-05-14
         </p>
         <p className="mb-4">
-          Maxx Mai Card (“we”, “us”, or “our”) is committed to protecting your privacy. This Privacy Policy explains how we collect, use, and safeguard your information when you use our application.
+          CardGenius (“we”, “us”, or “our”) is committed to protecting your privacy. This Privacy Policy explains how we collect, use, and safeguard your information when you use our application.
         </p>
         <h2 className="text-xl font-semibold mt-8 mb-2">Information We Collect</h2>
         <ul className="list-disc ml-6 mb-4">

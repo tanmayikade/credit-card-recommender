@@ -4,7 +4,7 @@ export default function Terms() {
   return (
     <>
       <Head>
-        <title>Terms of Service | Maxx Mai Card</title>
+        <title>Terms of Service | CardGenius</title>
       </Head>
       <div className="max-w-3xl mx-auto px-4 py-12">
         <h1 className="text-3xl font-bold mb-6">Terms of Service</h1>
@@ -12,7 +12,7 @@ export default function Terms() {
           <strong>Effective Date:</strong> {new Date().getFullYear()}-05-14
         </p>
         <p className="mb-4">
-          By using Maxx Mai Card, you agree to these Terms of Service. If you do not agree, please do not use the application.
+          By using CardGenius, you agree to these Terms of Service. If you do not agree, please do not use the application.
         </p>
         <h2 className="text-xl font-semibold mt-8 mb-2">Use of Service</h2>
         <p className="mb-4">
@@ -28,7 +28,7 @@ export default function Terms() {
         </p>
         <h2 className="text-xl font-semibold mt-8 mb-2">Limitation of Liability</h2>
         <p className="mb-4">
-          Maxx Mai Card is provided “as is” without warranties of any kind. We are not liable for any damages arising from your use of the app.
+          CardGenius is provided “as is” without warranties of any kind. We are not liable for any damages arising from your use of the app.
         </p>
         <h2 className="text-xl font-semibold mt-8 mb-2">Changes to Terms</h2>
         <p className="mb-4">
