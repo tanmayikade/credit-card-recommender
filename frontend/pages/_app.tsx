@@ -12,7 +12,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <meta name="description" content="Find the best credit card for your spending habits" />
         <meta name="google-site-verification" content="PXjrXBoV2W3fDJzl_QUsOKMeMhS6XwqoMUz8ZuAXPdk" />
         <meta name="google-site-verification" content="8Vwrg3incdrV8OSZ6pmxHfjsj5xtnNNxkNRDKHsnU5g" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="frontend/pages/favicon.ico" />
       </Head>
       <Layout>
         <Component {...pageProps} />
